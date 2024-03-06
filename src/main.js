@@ -5,20 +5,28 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 // import router from './router'
-import * as VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import PageHomeVue from './components/PageHome.vue'
+import PageThreadShow from './components/PageThreadShow.vue'
 
 const routes = [
   {
     path: '/',
+    name: 'Home',
     component: PageHomeVue
+  },
+  {
+    path: '/thread/:id',
+    name: 'ThreadShow',
+    component: PageThreadShow,
+    props: true
   }
 ]
 
-const router = VueRouter.createRouter(
+const router = createRouter(
   {
-    history: VueRouter.createWebHashHistory(),
+    history: createWebHistory(),
     routes
   }
 )
