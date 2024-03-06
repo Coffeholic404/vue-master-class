@@ -1,6 +1,6 @@
 <script setup>
 import sourceData from '@/data.json'
-import { reactive, ref} from 'vue'
+import { reactive, ref } from 'vue'
 
 const threads = ref(sourceData.threads)
 const posts = reactive(sourceData.posts)
