@@ -8,7 +8,7 @@
   <div v-for="thread in props.threads" :key="thread.id" class="thread">
     <div>
       <p>
-        <a href="#">{{ thread.title }}</a>
+        <RouterLink :to="{name: 'ThreadShow', params: {id: thread.id}}">{{ thread.title }}</RouterLink>
       </p>
       <p class="text-faded text-xsmall">
         By <a href="#">{{ userById(thread.userId).name }}</a>, {{ thread.publishedAt }}.
