@@ -1,42 +1,17 @@
 <template>
   <div class="col-large push-top">
     <h1>{{ thread.title }}</h1>
-
-    <div class="post-list">
-      <div class="post" v-for="postId in thread.posts" :key="postId">
-        <div class="user-info">
-          <a href="#" class="user-name">{{ userById(postById(postId).userId).name }}</a>
-
-          <a href="#">
-            <img class="avatar-large" :src="userById(postById(postId).userId).avatar" alt="" />
-          </a>
-
-          <p class="desktop-only text-small">107 posts</p>
-        </div>
-
-        <div class="post-content">
-          <div>
-            <p>
-              {{ postById(postId).text }}
-            </p>
-          </div>
-        </div>
-
-        <div class="post-date text-faded">
-          {{ postById(postId).publishedAt }}
-        </div>
-      </div>
-    </div>
+    <PostList :posts="threadPosts"/>
   </div>
 </template>
 
 <script setup>
+import PostList from '@/components/PostList.vue'
 import sourceData from '@/data.json'
 import { reactive, computed } from 'vue'
 
 const threads = reactive(sourceData.threads)
 const posts = reactive(sourceData.posts)
-const users = reactive(sourceData.users)
 
 const props = defineProps({
   id: {
@@ -45,16 +20,13 @@ const props = defineProps({
   }
 })
 
-function postById (postId) {
-  return posts.find((p) => p.id === postId)
-}
-function userById (userId) {
-  return users.find((p) => p.id === userId)
-}
-
 const thread = computed(() => {
   // eslint-disable-next-line no-undef
   return threads.find(thread => thread.id === props.id)
+})
+
+const threadPosts = computed(() => {
+  return posts.filter(post => post.threadId === props.id)
 })
 
 </script>
