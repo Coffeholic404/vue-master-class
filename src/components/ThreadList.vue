@@ -38,7 +38,6 @@
 <script setup>
 import sourceData from '@/data.json'
 import { reactive } from 'vue'
-import AppDate from './AppDate.vue'
 
 const props = defineProps({
   threads: {
