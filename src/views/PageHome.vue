@@ -1,9 +1,10 @@
 <script setup>
 import sourceData from '@/data.json'
-import ThreadList from '@/components/ThreadList.vue'
+import ForumList from '@/components/ForumList.vue'
 import { reactive } from 'vue'
 
-const threads = reactive(sourceData.threads)
+// const threads = reactive(sourceData.threads)
+const forums = reactive(sourceData.forums)
 
 // function postById (postId) {
 //   return posts.find((p) => p.id === postId)
@@ -11,10 +12,9 @@ const threads = reactive(sourceData.threads)
 // function userById (userId) {
 //   return users.find((p) => p.id === userId)
 // }
-
 </script>
 
 <template>
   <h1>Welcome to the Forum</h1>
-  <ThreadList :threads="threads"/>
+  <ForumList :forums="forums" />
 </template>
