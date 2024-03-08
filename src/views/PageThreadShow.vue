@@ -32,14 +32,11 @@ const threadPosts = computed(() => {
 
 // Methods
 const addPost = (eventData) => {
-  console.log(eventData)
   const postId = 'gggg' + Math.random()
   const post = {
     ...eventData.post,
     threadId: thread.value.id
   }
-  console.log(eventData.post)
-
   posts.push(post)
   thread.value.posts.push(postId)
 }
