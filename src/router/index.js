@@ -4,6 +4,7 @@ import PageThreadShow from '@/views/PageThreadShow.vue'
 import NotFound from '@/views/NotFound.vue'
 import sourceData from '@/data.json'
 import PageForum from '@/views/PageForum.vue'
+import PageCategory from '@/views/PageCategory.vue'
 const routes = [
   {
     path: '/',
@@ -38,6 +39,12 @@ const routes = [
     path: '/forum/:id',
     name: 'Forum',
     component: PageForum,
+    props: true
+  },
+  {
+    path: '/category/:id',
+    name: 'Category',
+    component: PageCategory,
     props: true
   },
   {
