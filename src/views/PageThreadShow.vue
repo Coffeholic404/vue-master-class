@@ -9,11 +9,12 @@
 <script setup>
 import PostEditor from '@/components/PostEditor.vue'
 import PostList from '@/components/PostList.vue'
-import sourceData from '@/data.json'
-import { reactive, computed } from 'vue'
+import { usePostStore } from '@/stores/PostStore'
+import { useThreadsStore } from '@/stores/ThreadsStore'
+import { computed } from 'vue'
 
-const threads = reactive(sourceData.threads)
-const posts = reactive(sourceData.posts)
+const postStore = usePostStore()
+const threadStore = useThreadsStore()
 
 const props = defineProps({
   id: {
@@ -23,21 +24,19 @@ const props = defineProps({
 })
 
 const thread = computed(() => {
-  return threads.find((thread) => thread.id === props.id)
+  return threadStore.threads.find((thread) => thread.id === props.id)
 })
 
 const threadPosts = computed(() => {
-  return posts.filter((post) => post.threadId === props.id)
+  return postStore.posts.filter((post) => post.threadId === props.id)
 })
 
 // Methods
 const addPost = (eventData) => {
-  const postId = 'gggg' + Math.random()
   const post = {
     ...eventData.post,
     threadId: thread.value.id
   }
-  posts.push(post)
-  thread.value.posts.push(postId)
+  postStore.createPost(post)
 }
 </script>
