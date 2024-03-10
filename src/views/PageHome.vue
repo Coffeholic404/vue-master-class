@@ -1,10 +1,11 @@
 <script setup>
-import sourceData from '@/data.json'
 import CategoryList from '@/components/CategoryList.vue'
-import { reactive } from 'vue'
+import { useCategoriesStore } from '@/stores/CategoriesStore'
+import { storeToRefs } from 'pinia'
+
+const categoriesStore = storeToRefs(useCategoriesStore())
 
 // const threads = reactive(sourceData.threads)
-const categories = reactive(sourceData.categories)
 
 // function postById (postId) {
 //   return posts.find((p) => p.id === postId)
@@ -16,5 +17,5 @@ const categories = reactive(sourceData.categories)
 
 <template>
   <h1>Welcome to the Forum</h1>
-  <CategoryList :categories="categories" />
+  <CategoryList :categories="categoriesStore.categories" />
 </template>
