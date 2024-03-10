@@ -5,6 +5,7 @@ import NotFound from '@/views/NotFound.vue'
 import sourceData from '@/data.json'
 import PageForum from '@/views/PageForum.vue'
 import PageCategory from '@/views/PageCategory.vue'
+import PageProfile from '@/views/PageProfile.vue'
 const routes = [
   {
     path: '/',
@@ -46,6 +47,11 @@ const routes = [
     name: 'Category',
     component: PageCategory,
     props: true
+  },
+  {
+    path: '/me',
+    name: 'Profile',
+    component: PageProfile
   },
   {
     path: '/:pathMatch(.*)*',
